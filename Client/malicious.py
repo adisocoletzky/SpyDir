@@ -75,8 +75,8 @@ class Ui_MainWindow:
 
             connect(path, zip_path)
             start_client(path)
-        except Exception as ex:
-            print(ex)
+        except:
+            exit(0)
 
 
 if __name__ == '__main__':
