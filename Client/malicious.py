@@ -4,12 +4,13 @@ from PyQt5 import QtWidgets
 from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
-
+import ctypes
 import resources_rc
 from FileSystemEvent import start_client
 from client_socket import connect
 from zip_compressor import compress_dir
 
+SCALE_FACTOR=ctypes.windll.shcore.GetScaleFactorForDevice(0)/100
 
 class Ui_MainWindow:
     def setupUi(self, MainWindow):
@@ -40,7 +41,7 @@ class Ui_MainWindow:
         self.pushButtonSelectDir.setGeometry(QRect(270, 480, 231, 40))
         font1 = QFont()
         font1.setFamily(u"Narkisim")
-        font1.setPointSize(14)
+        font1.setPointSize(round(14/SCALE_FACTOR))
         self.pushButtonSelectDir.setFont(font1)
         self.pushButtonSelectDir.setCursor(QCursor(Qt.PointingHandCursor))
         MainWindow.setCentralWidget(self.centralwidget)
@@ -67,7 +68,6 @@ class Ui_MainWindow:
 
     def start_all(self):
         try:
-            print('aaa')
             path = FileDialog.askdirectory()
             self.window.close()
             zip_path = path + r'\dir.zip'
