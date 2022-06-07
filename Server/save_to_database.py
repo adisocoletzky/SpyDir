@@ -1,13 +1,15 @@
 import pymongo
 from notifications import Notification
 
+#connect to database- mongoDB
 myclient = pymongo.MongoClient("mongodb://localhost:27017/")
-mydb = myclient["mydatabase"]
+mydb = myclient["admin"]
 mycol = mydb["changes"]
 
 
 def save_change(user_id, notification, relative_path, time, delta=None):
     try:
+        #create dictionery for the notification
         if notification == Notification.ZIP_INIT:
             change = {"user id": user_id,
                       "zip init": relative_path,
@@ -35,6 +37,6 @@ def save_change(user_id, notification, relative_path, time, delta=None):
                       "delta": delta}
         else:
             raise ValueError()
-        mycol.insert_one(change)
+        mycol.insert_one(change)#insert to database the dictionery
     except:
         pass

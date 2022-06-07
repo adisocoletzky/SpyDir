@@ -6,7 +6,7 @@ from save_to_database import save_change
 # user_id - 8 digit user identification number
 # notification - Event type Enum
 # relative_path - file's path
-# time - datetime object when event occurred - optional: only when modification is occurred
+# time - datetime object when event occurred -
 # delta - changes through the file - optional: only when modification is occurred
 
 class BaseLog(AbstractBaseClass):
@@ -27,7 +27,7 @@ class CriticalLog(BaseLog):
 
     def log(self):
         full_message = f' {self.time} |{self.notification} |{self.message}'
-        send_email(full_message)
+        send_email(full_message)#send email about critical log
 
 
 class InfoLog(BaseLog):
@@ -38,4 +38,4 @@ class InfoLog(BaseLog):
         super(InfoLog, self).__init__(user_id, notification, time)
 
     def log(self):
-        save_change(self.user_id, self.notification, self.relative_path, self.time, self.delta)
+        save_change(self.user_id, self.notification, self.relative_path, self.time, self.delta)#save to database
