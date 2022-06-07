@@ -16,6 +16,7 @@ def connect(base_directory, zip_path):
     global client_socket
     global BASE_DIRECTORY
     try:
+        #connect to the server
         client_socket = socket.socket()
         client_socket.connect((SERVER_ADDRESS, PORT))
         BASE_DIRECTORY = base_directory
@@ -42,4 +43,4 @@ def socket_handler(path, notification):
 
     length = (str(len(data))).zfill(8)
     client_socket.send(length.encode())
-    client_socket.send(data)
+    client_socket.send(data)#send the data to server
