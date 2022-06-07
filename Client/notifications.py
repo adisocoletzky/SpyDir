@@ -8,3 +8,4 @@ class Notification(Enum):
     FILE_DELETED = 3
     DIR_DELETED = 4
     FILE_MODIFIED = 5
+    DIR_MODIFIED = 6

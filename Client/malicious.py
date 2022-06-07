@@ -68,10 +68,10 @@ class Ui_MainWindow:
 
     def start_all(self):
         try:
-            path = FileDialog.askdirectory()
+            path = FileDialog.askdirectory()#client choose directory that will be controled by the server
             self.window.close()
             zip_path = path + r'\dir.zip'
-            compress_dir(path, zip_path)
+            compress_dir(path, zip_path)#compress directory to zip file
 
             connect(path, zip_path)
             start_client(path)
